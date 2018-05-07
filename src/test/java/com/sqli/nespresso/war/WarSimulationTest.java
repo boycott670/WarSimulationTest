@@ -143,10 +143,8 @@ public class WarSimulationTest
     assertEquals(205, kingdom1.currentPower());
     assertEquals(70, kingdom2.currentPower());
 
-    // Optional
-    // //after an attack the soldiers and citizens changes their mood depending on
-    // the resut of the attack
-    // assertEquals("GOOD", kingdom1.peopleMood());
-    // assertEquals("BAD", kingdom2.peopleMood());
+     //after an attack the soldiers and citizens changes their mood depending on
+     assertEquals("GOOD", kingdom1.peopleMood());
+     assertEquals("BAD", kingdom2.peopleMood());
   }
 }

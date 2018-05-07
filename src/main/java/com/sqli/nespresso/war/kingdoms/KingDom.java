@@ -80,4 +80,14 @@ public final class KingDom implements Comparable<KingDom>
         .get()
         .getSoldiersOnEdge();
   }
+
+  public String peopleMood()
+  {
+    return countries.stream()
+        .map(Country::getSoldiersOnEdge)
+        .filter(soldiers -> soldiers > 0)
+        .findAny()
+        .map(__ -> "GOOD")
+        .orElse("BAD");
+  }
 }
