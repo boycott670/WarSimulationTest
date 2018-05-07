@@ -14,10 +14,10 @@ public final class War
   private final Map map;
 
   private KingDom powerfulKingDom;
-  private KingDom againstPowerfulKingDom;
+  private KingDom nearestToPowerfulKingDom;
 
   private String powerfulKingDomEdgeCountry;
-  private String againstPowerfulKingDomEdgeCountry;
+  private String nearestToPowerfulKingDomEdgeCountry;
 
   War(Collection<KingDom> kingDoms, Map map)
   {
@@ -43,12 +43,12 @@ public final class War
         ? nearestEedge.getCountry1()
         : nearestEedge.getCountry2();
 
-    againstPowerfulKingDomEdgeCountry = Objects.equals(powerfulKingDomEdgeCountry, nearestEedge.getCountry1())
+    nearestToPowerfulKingDomEdgeCountry = Objects.equals(powerfulKingDomEdgeCountry, nearestEedge.getCountry1())
         ? nearestEedge.getCountry2()
         : nearestEedge.getCountry1();
 
-    againstPowerfulKingDom = kingDoms.stream()
-        .filter(kingDom -> kingDom.containsCountry(againstPowerfulKingDomEdgeCountry))
+    nearestToPowerfulKingDom = kingDoms.stream()
+        .filter(kingDom -> kingDom.containsCountry(nearestToPowerfulKingDomEdgeCountry))
         .findFirst()
         .get();
 
@@ -60,9 +60,9 @@ public final class War
     final int powerfulKingDomEdgeCountrySoldiersOnEdge = powerfulKingDom.soldiersOnEdge(powerfulKingDomEdgeCountry);
 
     powerfulKingDom.looseSoldiersOnEdge(powerfulKingDomEdgeCountry,
-        againstPowerfulKingDom.soldiersOnEdge(againstPowerfulKingDomEdgeCountry));
+        nearestToPowerfulKingDom.soldiersOnEdge(nearestToPowerfulKingDomEdgeCountry));
 
-    againstPowerfulKingDom.looseSoldiersOnEdge(againstPowerfulKingDomEdgeCountry,
+    nearestToPowerfulKingDom.looseSoldiersOnEdge(nearestToPowerfulKingDomEdgeCountry,
         powerfulKingDomEdgeCountrySoldiersOnEdge);
   }
 }
