@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import com.sqli.nespresso.war.kingdoms.KingDom;
 import com.sqli.nespresso.war.kingdoms.KingDomBuilder;
+import com.sqli.nespresso.war.wars.War;
+import com.sqli.nespresso.war.wars.WarBuilder;
 
 public class WarSimulationTest
 {
@@ -62,5 +64,40 @@ public class WarSimulationTest
       assertEquals(3100, kingdom2.currentPower());
 
 
+  }
+  
+  @Test
+  public void aKingDomCanPrepareAnAttackAnOther() {
+      KingDom kingdom1 = new KingDomBuilder()
+              .addKing("Idriss")
+              .addCountry("France","20","100","50","200","100","100")
+              .addCountry("Spain","30","200","40","300")
+              .addSoldiersOnEdges("500")
+              .build();
+
+      KingDom kingdom2 = new KingDomBuilder()
+              .addKing("MOHA")
+              .addCountry("USA","30","200","40","300")
+              .addSoldiersOnEdges("200")
+              .build();
+
+      assertEquals(240, kingdom1.currentPower());
+      assertEquals(70, kingdom2.currentPower());
+
+
+      War war = new WarBuilder()
+              .addKingDom(kingdom1)
+              .addKingDom(kingdom2)
+              .addMap("France:100:Spain,France:1000:USA,Spain:1500:USA")
+              .build();
+
+      //the kingdoms which has more power prepare Attack on the nearest kingdoms
+      //when a kingdoms prepare an attack he moves 50% of his army on each city to the country's edge which is the nearest to the other kingdoms
+      war.prepareAttack();
+
+      assertEquals("Idriss:|F:<Fc1:20-100,Fc2:50-200,Fc3:100-100>-535, S:<Sc1:15-200,Sc2:20-300>-500|",kingdom1.report());
+      assertEquals("MOHA:|U:<Uc1:30-200,Uc2:40-300>-200|",kingdom2.report());
+      assertEquals(205, kingdom1.currentPower());
+      assertEquals(70, kingdom2.currentPower());
   }
 }

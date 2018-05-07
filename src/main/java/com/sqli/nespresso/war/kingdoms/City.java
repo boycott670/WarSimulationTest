@@ -2,7 +2,7 @@ package com.sqli.nespresso.war.kingdoms;
 
 public final class City
 {
-  private final int soldiers;
+  private int soldiers;
   private final int citizens;
   
   public City(int soldiers, int citizens)
@@ -19,5 +19,10 @@ public final class City
   String report()
   {
     return String.format("%d-%d", soldiers, citizens);
+  }
+  
+  int prepareAttack()
+  {
+    return soldiers /= 2;
   }
 }

@@ -21,6 +21,11 @@ public final class Country
   {
     soldiers = soldiersOnEdge;
   }
+  
+  void incrementSoldiersOnEdge(final int soldiersOnEdge)
+  {
+    setSoldiersOnEdge(soldiers + soldiersOnEdge);
+  }
 
   int power()
   {
@@ -38,5 +43,17 @@ public final class Country
         Optional.ofNullable(soldiers)
             .map(soldiers -> String.format("-%d", soldiers))
             .orElse(""));
+  }
+
+  final String getName()
+  {
+    return name;
+  }
+  
+  int prepareAttack()
+  {
+    return cities.stream()
+        .mapToInt(City::prepareAttack)
+        .sum();
   }
 }
