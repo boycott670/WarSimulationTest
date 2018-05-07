@@ -27,7 +27,7 @@ public final class KingDomBuilder
   
   public KingDomBuilder addSoldiersOnEdges(final String soldiersOnEdges)
   {
-    countries.stream().forEach(country -> country.setSoldiersOnEdge(Integer.valueOf(soldiersOnEdges)));
+    countries.forEach(country -> country.setSoldiersOnEdge(Integer.valueOf(soldiersOnEdges)));
     return this;
   }
   
