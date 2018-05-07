@@ -7,7 +7,7 @@ public final class MapEntry implements Comparable<MapEntry>
   private final String country1;
   private final String country2;
   private final int distance;
-  
+
   public MapEntry(String country1, String country2, int distance)
   {
     this.country1 = country1;

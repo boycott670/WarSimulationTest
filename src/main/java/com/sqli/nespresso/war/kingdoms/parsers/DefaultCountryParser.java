@@ -13,14 +13,14 @@ public final class DefaultCountryParser implements CountryParser
   public Country parseCountry(String[] tokens)
   {
     final String countryName = tokens[0];
-    
+
     final List<City> countryCities = new ArrayList<>();
-    
-    for (int index = 1 ; index < tokens.length - 1 ; index += 2)
+
+    for (int index = 1; index < tokens.length - 1; index += 2)
     {
       countryCities.add(new City(Integer.valueOf(tokens[index]), Integer.valueOf(tokens[index + 1])));
     }
-    
+
     return new Country(countryName, countryCities);
   }
 

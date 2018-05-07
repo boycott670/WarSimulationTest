@@ -7,21 +7,26 @@ import java.util.stream.IntStream;
 
 public final class Country
 {
-  private final String name; 
+  private final String name;
   private final List<City> cities;
   private Integer soldiers;
-  
+
   public Country(String name, List<City> cities)
   {
     this.name = name;
     this.cities = cities;
   }
-  
+
+  int getSoldiersOnEdge()
+  {
+    return soldiers;
+  }
+
   void setSoldiersOnEdge(final int soldiersOnEdge)
   {
     soldiers = soldiersOnEdge;
   }
-  
+
   void incrementSoldiersOnEdge(final int soldiersOnEdge)
   {
     setSoldiersOnEdge(soldiers + soldiersOnEdge);
@@ -33,7 +38,7 @@ public final class Country
         .mapToInt(City::power)
         .sum();
   }
-  
+
   String report()
   {
     return String.format("%c:<%s>%s", name.charAt(0), IntStream.range(0, cities.size())
@@ -41,6 +46,7 @@ public final class Country
             .report()))
         .collect(Collectors.joining(",")),
         Optional.ofNullable(soldiers)
+            .filter(nonNullSoldiers -> nonNullSoldiers > 0)
             .map(soldiers -> String.format("-%d", soldiers))
             .orElse(""));
   }
@@ -49,7 +55,7 @@ public final class Country
   {
     return name;
   }
-  
+
   int prepareAttack()
   {
     return cities.stream()
