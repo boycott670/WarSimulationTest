@@ -51,7 +51,7 @@ public final class Country
             .orElse(""));
   }
 
-  final String getName()
+  String getName()
   {
     return name;
   }
