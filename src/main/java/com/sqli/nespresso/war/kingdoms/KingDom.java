@@ -32,7 +32,7 @@ public final class KingDom implements Comparable<KingDom>
   @Override
   public int compareTo(KingDom other)
   {
-    return Comparator.comparing(KingDom::currentPower)
+    return Comparator.comparingInt(KingDom::currentPower)
         .compare(this, other);
   }
   
