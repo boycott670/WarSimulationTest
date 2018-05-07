@@ -84,10 +84,9 @@ public final class KingDom implements Comparable<KingDom>
   public String peopleMood()
   {
     return countries.stream()
-        .map(Country::getSoldiersOnEdge)
+        .mapToInt(Country::getSoldiersOnEdge)
         .filter(soldiers -> soldiers > 0)
         .findAny()
-        .map(__ -> "GOOD")
-        .orElse("BAD");
+        .isPresent() ? "GOOD" : "BAD";
   }
 }
