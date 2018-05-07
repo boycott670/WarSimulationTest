@@ -15,17 +15,17 @@ public final class MapEntry implements Comparable<MapEntry>
     this.distance = distance;
   }
 
-  final String getCountry1()
+  String getCountry1()
   {
     return country1;
   }
 
-  final String getCountry2()
+  String getCountry2()
   {
     return country2;
   }
 
-  final int getDistance()
+  int getDistance()
   {
     return distance;
   }
@@ -33,7 +33,7 @@ public final class MapEntry implements Comparable<MapEntry>
   @Override
   public int compareTo(MapEntry other)
   {
-    return Comparator.comparing(MapEntry::getDistance)
+    return Comparator.comparingInt(MapEntry::getDistance)
         .compare(this, other);
   }
 }
